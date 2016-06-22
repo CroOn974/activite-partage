@@ -2,6 +2,7 @@
 
 namespace Partage\PartageBundle\Controller;
 
+use Partage\PartageBundle\Entity\Particulier;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -28,9 +29,12 @@ class ObjetsController extends Controller
 
         $objets = $em->getRepository('PartagePartageBundle:Objets')->findAll();
 
-        return $this->render('objets/index.html.twig', array(
-            'objets' => $objets,
-        ));
+        return $this->render(
+            'objets/index.html.twig',
+            array(
+                'objets' => $objets,
+            )
+        );
     }
 
     /**
@@ -41,8 +45,15 @@ class ObjetsController extends Controller
      */
     public function newAction(Request $request)
     {
+        $fos_user = $this->getUser();
+        $fos_userid = $fos_user->getId();
+        $user = new Particulier();
+        $user->setUser($fos_userid);
         $objet = new Objets();
-        $form = $this->createForm('Partage\PartageBundle\Form\ObjetsType', $objet);
+        $form = $this->createForm(
+            'Partage\PartageBundle\Form\ObjetsType',
+            $objet
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,13 +61,19 @@ class ObjetsController extends Controller
             $em->persist($objet);
             $em->flush();
 
-            return $this->redirectToRoute('objets_show', array('id' => $objet->getId()));
+            return $this->redirectToRoute(
+                'objets_show',
+                array('id' => $objet->getId())
+            );
         }
 
-        return $this->render('objets/new.html.twig', array(
-            'objet' => $objet,
-            'form' => $form->createView(),
-        ));
+        return $this->render(
+            'objets/new.html.twig',
+            array(
+                'objet' => $objet,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -69,10 +86,13 @@ class ObjetsController extends Controller
     {
         $deleteForm = $this->createDeleteForm($objet);
 
-        return $this->render('objets/show.html.twig', array(
-            'objet' => $objet,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'objets/show.html.twig',
+            array(
+                'objet' => $objet,
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
@@ -84,7 +104,10 @@ class ObjetsController extends Controller
     public function editAction(Request $request, Objets $objet)
     {
         $deleteForm = $this->createDeleteForm($objet);
-        $editForm = $this->createForm('Partage\PartageBundle\Form\ObjetsType', $objet);
+        $editForm = $this->createForm(
+            'Partage\PartageBundle\Form\ObjetsType',
+            $objet
+        );
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -92,14 +115,20 @@ class ObjetsController extends Controller
             $em->persist($objet);
             $em->flush();
 
-            return $this->redirectToRoute('objets_edit', array('id' => $objet->getId()));
+            return $this->redirectToRoute(
+                'objets_edit',
+                array('id' => $objet->getId())
+            );
         }
 
-        return $this->render('objets/edit.html.twig', array(
-            'objet' => $objet,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'objets/edit.html.twig',
+            array(
+                'objet' => $objet,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
@@ -132,9 +161,13 @@ class ObjetsController extends Controller
     private function createDeleteForm(Objets $objet)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('objets_delete', array('id' => $objet->getId())))
+            ->setAction(
+                $this->generateUrl(
+                    'objets_delete',
+                    array('id' => $objet->getId())
+                )
+            )
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

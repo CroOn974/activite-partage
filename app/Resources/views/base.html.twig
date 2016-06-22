@@ -23,9 +23,15 @@
         {% endif %}
         {% if is_granted("ROLE_PART") %}
             <li class="nav-item">
-                <a class="nav-link"
+                <a class="nav-link btn btn-primary"
                    href="{{ path('objets_show', {'id':app.user.id}) }}">Mes
                     Objets</a>
+            </li>
+        {% endif %}
+        {% if is_granted("ROLE_PART") %}
+            <li class="nav-item">
+                <a class="nav-link btn btn-danger"
+                   href="{{ path('objets_new', {'id':app.user.id}) }}">Ajouter un objet</a>
             </li>
         {% endif %}
         <li class="nav-item">
