@@ -1,16 +1,33 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form ":BootstrapTemplate:bootstrap.html.twig" %}
 {% block body %}
-    <h1>Objets creation</h1>
+    <div class="container m-t-3 p-t-1">
+        <h1>Ajouter un objet aux dons</h1>
+        <div class="col-md-4 col-md-offset-4">
+            {{ form_start(form) }}
+            {{ form_errors(form.nom) }}
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-success" type="submit" value="Create" />
-    {{ form_end(form) }}
+            {{ form_errors(form.description) }}
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('objets_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <fieldset class="form-group">
+                {{ form_errors(form.categorie) }}
+                {{ form_label(form.categorie) }}
+                {{ form_widget(form.categorie, {'attr': {'class':
+                    'form-control'}}) }}
+            </fieldset>
+            {#{{ dump(form) }}#}
+            <input class="btn btn-success" type="submit" value="Create"/>
+            {{ form_end(form) }}
+            <ul>
+                <li>
+                    <a href="{{ path('objets_index') }}">Retour a la liste
+                        des objets</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

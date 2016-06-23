@@ -29,6 +29,8 @@ class ObjetsController extends Controller
 
         $objets = $em->getRepository('PartagePartageBundle:Objets')->findAll();
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Interdit :)) :)) 
+        :)');
         return $this->render(
             'objets/index.html.twig',
             array(
@@ -63,7 +65,7 @@ class ObjetsController extends Controller
 
             return $this->redirectToRoute(
                 'objets_show',
-                array('id' => $objet->getId())
+                array('id' => $objet->getParticulier()->getId())
             );
         }
 
@@ -82,15 +84,18 @@ class ObjetsController extends Controller
      * @Route("/{id}", name="objets_show")
      * @Method("GET")
      */
-    public function showAction(Objets $objet)
+    public function showAction($id)
     {
-        $deleteForm = $this->createDeleteForm($objet);
+        $em = $this->getDoctrine()->getManager()->getRepository
+        (
+            'PartagePartageBundle:Objets'
+        );
+        $particulierObjet = $em->findBy(['particulier' => $id]);
 
         return $this->render(
             'objets/show.html.twig',
             array(
-                'objet' => $objet,
-                'delete_form' => $deleteForm->createView(),
+                'particulierObjet' => $particulierObjet,
             )
         );
     }
@@ -148,7 +153,10 @@ class ObjetsController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('objets_index');
+        return $this->redirectToRoute(
+            'objets_show',
+            array('id' => $objet->getParticulier()->getId())
+        );
     }
 
     /**
