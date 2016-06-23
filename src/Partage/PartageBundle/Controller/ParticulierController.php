@@ -68,7 +68,7 @@ class ParticulierController extends Controller
             $am->findBy();
             var_dump($am);*/
             return $this->redirectToRoute(
-                'particulier_show',
+                'index_page',
                 array('id' => $particulier->getId())
             );
         }
