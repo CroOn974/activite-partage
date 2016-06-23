@@ -18,8 +18,6 @@ class ObjetsType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('categorie')
-            ->add('particulier')
-            ->add('association')
         ;
     }
     
