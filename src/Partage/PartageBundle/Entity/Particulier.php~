@@ -41,7 +41,7 @@ class Particulier
     private $objets;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="particulier")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="particulier")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

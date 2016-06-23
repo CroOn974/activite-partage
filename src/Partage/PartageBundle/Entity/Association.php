@@ -41,7 +41,7 @@ class Association
     private $objets;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="association")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
