@@ -30,6 +30,8 @@ class ParticulierController extends Controller
             'PartagePartageBundle:Particulier'
         )->findAll();
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Interdit :)) :)) 
+        :)');
         return $this->render(
             'particulier/index.html.twig',
             array(
@@ -66,7 +68,7 @@ class ParticulierController extends Controller
             $am->findBy();
             var_dump($am);*/
             return $this->redirectToRoute(
-                'particulier_show',
+                'index_page',
                 array('id' => $particulier->getId())
             );
         }

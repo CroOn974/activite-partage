@@ -1,40 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Objets</h1>
+    <div class="container">
+        <h1>Objets</h1>
 
-    <table>
-        <tbody>
+        <table class="table m-t-3">
+            <thead class="thead-inverse">
             <tr>
-                <th>Id</th>
-                <td>{{ objet.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ objet.nom }}</td>
-            </tr>
-            <tr>
+                <th>Nom de l'objet</th>
                 <th>Description</th>
-                <td>{{ objet.description }}</td>
+                <th>Catégorie</th>
+                <th>Action</th>
             </tr>
-            <tr>
-                <th>Categorie</th>
-                <td>{{ objet.categorie }}</td>
-            </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for objets in particulierObjet %}
+                <tr>
+                    <td>{{ objets.nom }}</td>
+                    <td>{{ objets.description }}</td>
+                    <td>{% if objets.categorie == 1  %}
+                            Mobilier
+                        {% endif %}
+                        {% if objets.categorie == 2  %}
+                            Electroménager
+                        {% endif %}
+                        {% if objets.categorie == 3  %}
+                            Vetement
+                        {% endif %}
+                        {% if objets.categorie == 4  %}
+                            Autre
+                        {% endif %}
+                    </td>
+                    <td><a class="btn btn-danger" href="{{ path('objets_edit',
+                        {'id':objets.id})
+                        }}">Editer</a></td>
+                </tr>
 
-    <ul>
-        <li>
-            <a href="{{ path('objets_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('objets_edit', { 'id': objet.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
