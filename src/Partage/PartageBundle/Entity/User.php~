@@ -18,6 +18,11 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Particulier", inversedBy="user")
+     */
+    protected $particulier;
     
     public function __construct()
     {
@@ -26,7 +31,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set groupe
+     * Set groupeerror: Argument 1 passed to Partage\PartageBundle\Entity\Particulier::setUser() must be an instance of Partage\PartageBundle\Entity\User, integer given, called in /home/simplon/activite-parta
      *
      * @param string $groupe
      *

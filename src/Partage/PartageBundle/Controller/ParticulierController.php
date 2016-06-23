@@ -46,6 +46,7 @@ class ParticulierController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $user_id = $this->getUser();
         $user_id->getId();
         $particulier = new Particulier();
@@ -61,6 +62,9 @@ class ParticulierController extends Controller
             $em->persist($particulier);
             $em->flush();
 
+            /*$am=$this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Particulier');
+            $am->findBy();
+            var_dump($am);*/
             return $this->redirectToRoute(
                 'particulier_show',
                 array('id' => $particulier->getId())

@@ -20,7 +20,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Particulier", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Particulier", mappedBy="user")
      */
     protected $particulier;
     
@@ -52,5 +52,29 @@ class User extends BaseUser
     public function getGroupe()
     {
         return $this->groupe;
+    }
+
+    /**
+     * Set particulier
+     *
+     * @param \Partage\PartageBundle\Entity\Particulier $particulier
+     *
+     * @return User
+     */
+    public function setParticulier(\Partage\PartageBundle\Entity\Particulier $particulier = null)
+    {
+        $this->particulier = $particulier;
+
+        return $this;
+    }
+
+    /**
+     * Get particulier
+     *
+     * @return \Partage\PartageBundle\Entity\Particulier
+     */
+    public function getParticulier()
+    {
+        return $this->particulier;
     }
 }

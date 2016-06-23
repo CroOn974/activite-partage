@@ -45,11 +45,11 @@ class ObjetsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $fos_user = $this->getUser();
-        $fos_userid = $fos_user->getId();
-        $user = new Particulier();
-        $user->setUser($fos_userid);
+        $userParticulier = $this->getUser();
+        $particulier = $userParticulier->getParticulier();
+
         $objet = new Objets();
+        $objet->setParticulier($particulier);
         $form = $this->createForm(
             'Partage\PartageBundle\Form\ObjetsType',
             $objet
