@@ -30,7 +30,7 @@ class ObjetsController extends Controller
         $objets = $em->getRepository('PartagePartageBundle:Objets')->findAll();
 
         $this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_ASSOS'], null,
-        'Interdit :)) 
+            'Interdit :)) 
         :)) 
         :)');
         return $this->render(
