@@ -23,7 +23,12 @@ class User extends BaseUser
      * @ORM\OneToOne(targetEntity="Particulier", mappedBy="user")
      */
     protected $particulier;
-    
+
+    /**
+     * @ORM\OneToOne(targetEntity="Association", mappedBy="user")
+     */
+    protected $association;
+
     public function __construct()
     {
         parent::__construct();
@@ -76,5 +81,29 @@ class User extends BaseUser
     public function getParticulier()
     {
         return $this->particulier;
+    }
+
+    /**
+     * Set association
+     *
+     * @param \Partage\PartageBundle\Entity\Association $association
+     *
+     * @return User
+     */
+    public function setAssociation(\Partage\PartageBundle\Entity\Association $association = null)
+    {
+        $this->association = $association;
+
+        return $this;
+    }
+
+    /**
+     * Get association
+     *
+     * @return \Partage\PartageBundle\Entity\Association
+     */
+    public function getAssociation()
+    {
+        return $this->association;
     }
 }

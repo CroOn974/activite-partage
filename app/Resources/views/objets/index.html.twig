@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Objets list</h1>
+  <div class="container m-t-3 p-t-1">
+    <h1>Objets disponible</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,23 +22,25 @@
                 <td>{{ objet.description }}</td>
                 <td>{{ objet.categorie }}</td>
                 <td>
-                    <ul>
+                    <a class="btn btn-btn" style="background:grey ; color:white" href="/getobjet/{{ objet.id }}" role="button">JE LE VEUX</a>
+                    <!--<ul>
                         <li>
                             <a href="{{ path('objets_show', { 'id': objet.id }) }}">show</a>
                         </li>
                         <li>
                             <a href="{{ path('objets_edit', { 'id': objet.id }) }}">edit</a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
+    <!--<ul>
         <li>
             <a href="{{ path('objets_new') }}">Create a new entry</a>
         </li>
-    </ul>
+    </ul>-->
+    </div>
 {% endblock %}
