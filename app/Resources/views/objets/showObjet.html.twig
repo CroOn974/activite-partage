@@ -7,8 +7,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Nom</th>
-                <th>Description</th>
+                <th>Nom de l'association</th>
+                <th>Objet concerné</th>
                 <th>Categorie</th>
                 <th>Action</th>
             </tr>
@@ -19,19 +19,9 @@
                     <td>{{ objet.nom }}</td>
                     <td>{{ objet.description }}</td>
                     <td>{{ objet.categorie }}</td>
-                    <td>
-                        <a class="btn btn-btn" style="background:grey ; color:white"
-                           href="{{ path('get_objet', {'id': objet.id}) }}" role="button">JE LE VEUX</a>
-                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <!--<ul>
-        <li>
-            <a href="{{ path('objets_new') }}">Create a new entry</a>
-        </li>
-    </ul>-->
     </div>
 {% endblock %}

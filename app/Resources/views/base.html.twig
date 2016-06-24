@@ -17,20 +17,28 @@
     <ul class="nav navbar-nav pull-md-right">
         {% if is_granted("ROLE_ASSOS") %}
             <li class="nav-item">
-                <a class="nav-link" href="objets">Liste
+                <a class="nav-link" href="{{ path('objets_index') }}">Liste
                     des dons</a>
             </li>
         {% endif %}
         {% if is_granted("ROLE_PART") %}
             <li class="nav-item">
-                <a class="nav-link btn btn-primary"
-                   href="{{ path('objets_show', {'id':app.user.id}) }}">Mes
-                    Objets</a>
+                <a class="nav-link"
+                   href="{{ path('show_request') }}">Mes
+                    requetes</a>
             </li>
         {% endif %}
         {% if is_granted("ROLE_PART") %}
             <li class="nav-item">
-                <a class="nav-link btn btn-danger"
+                <a class="nav-link"
+                   href="{{ path('objets_show', {'id':app.user.id}) }}">Mes
+                    Objets</a>
+            </li>
+        {% endif %}
+
+        {% if is_granted("ROLE_PART") %}
+            <li class="nav-item">
+                <a class="nav-link"
                    href="{{ path('objets_new', {'id':app.user.id}) }}">Ajouter un objet</a>
             </li>
         {% endif %}
