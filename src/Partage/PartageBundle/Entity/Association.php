@@ -130,40 +130,7 @@ class Association
     {
         return $this->tel;
     }
-
-    /**
-     * Add objet
-     *
-     * @param \Partage\PartageBundle\Entity\Objets $objet
-     *
-     * @return Association
-     */
-    public function addObjet(\Partage\PartageBundle\Entity\Objets $objet)
-    {
-        $this->objets[] = $objet;
-
-        return $this;
-    }
-
-    /**
-     * Remove objet
-     *
-     * @param \Partage\PartageBundle\Entity\Objets $objet
-     */
-    public function removeObjet(\Partage\PartageBundle\Entity\Objets $objet)
-    {
-        $this->objets->removeElement($objet);
-    }
-
-    /**
-     * Get objets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObjets()
-    {
-        return $this->objets;
-    }
+    
 
     /**
      * Set user

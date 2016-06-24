@@ -158,44 +158,6 @@ class Objets
     }
 
     /**
-     * Add association
-     *
-     * @param \Partage\PartageBundle\Entity\Association $association
-     *
-     * @return Objets
-     */
-    public function addAssociation(
-        \Partage\PartageBundle\Entity\Association $association
-    )
-    {
-        $this->association[] = $association;
-
-        return $this;
-    }
-
-    /**
-     * Remove association
-     *
-     * @param \Partage\PartageBundle\Entity\Association $association
-     */
-    public function removeAssociation(
-        \Partage\PartageBundle\Entity\Association $association
-    )
-    {
-        $this->association->removeElement($association);
-    }
-
-    /**
-     * Get association
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAssociation()
-    {
-        return $this->association;
-    }
-
-    /**
      * Set reservation
      *
      * @param \Partage\PartageBundle\Entity\Reservation $reservation
