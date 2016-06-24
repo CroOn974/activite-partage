@@ -217,4 +217,15 @@ class ObjetsController extends Controller
             'queryObjet' => $queryObjet,
         ));
     }
+
+    /**
+     * @Route("/deleterequest/{id}", name="delete_request")
+     */
+    public function deleteRequestAction($id)
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
+        $pushIntoBase = $this->getDoctrine()->getManager();
+        $pushIntoBase->persist($deleteQuery);
+        $pushIntoBase->flush();
+    }
 }

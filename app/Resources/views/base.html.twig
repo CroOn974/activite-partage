@@ -31,11 +31,10 @@
         {% if is_granted("ROLE_PART") %}
             <li class="nav-item">
                 <a class="nav-link"
-                   href="{{ path('objets_show', {'id':app.user.id}) }}">Mes
+                   href="{{ path('objets_show', {'id':app.user.particulier.id}) }}">Mes
                     Objets</a>
             </li>
         {% endif %}
-
         {% if is_granted("ROLE_PART") %}
             <li class="nav-item">
                 <a class="nav-link"
