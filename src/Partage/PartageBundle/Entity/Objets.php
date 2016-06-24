@@ -36,8 +36,9 @@ class Objets
      */
     private $particulier;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="Association", mappedBy="objets")
+     * @ORM\ManyToMany(targetEntity="Association", inversedBy="objets")
      */
     private $association;
 
@@ -140,7 +141,8 @@ class Objets
      */
     public function setParticulier(
         \Partage\PartageBundle\Entity\Particulier $particulier = null
-    ) {
+    )
+    {
         $this->particulier = $particulier;
 
         return $this;
@@ -165,7 +167,8 @@ class Objets
      */
     public function addAssociation(
         \Partage\PartageBundle\Entity\Association $association
-    ) {
+    )
+    {
         $this->association[] = $association;
 
         return $this;
@@ -178,7 +181,8 @@ class Objets
      */
     public function removeAssociation(
         \Partage\PartageBundle\Entity\Association $association
-    ) {
+    )
+    {
         $this->association->removeElement($association);
     }
 

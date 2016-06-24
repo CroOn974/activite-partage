@@ -31,12 +31,8 @@ class Association
     private $tel;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Objets", inversedBy="association")
-     * @ORM\JoinTable(
-     *     name="objets_Has_association",
-     *     joinColumns={@ORM\JoinColumn(name="association_id", referencedColumnName="id", nullable=false)},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="objets_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @ORM\ManyToMany(targetEntity="Objets", mappedBy="association")
+     * @ORM\JoinTable(name="objets_Has_association")
      */
     private $objets;
 
@@ -45,6 +41,7 @@ class Association
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
     /**
      * Constructor
      */
