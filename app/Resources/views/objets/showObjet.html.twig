@@ -13,6 +13,7 @@
             </thead>
             <tbody>
             {% for objet in queryObjet %}
+
                 {% for objet2 in objet.reservation %}
                     <tr>
                         <td>{{ objet2.association.nom }}</td>
@@ -26,6 +27,7 @@
                         </td>
                     </tr>
                 {% endfor %}|
+
             {% endfor %}
             </tbody>
         </table>
