@@ -7,17 +7,20 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Nom de l'association</th>
+                <th>Nom de l'association et adresse</th>
                 <th>Objet concerné</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            {% for objet in objets %}
+            {% for objet in queryObjet %}
                 <tr>
-                    <td>{{ objet.nom }}</td>
+                    <td>{{ objet.association.0.nom }}<br>{{ objet.association.0.adresse }}</td>
                     <td>{{ objet.description }}</td>
-                    <td>{{ objet.categorie }}</td>
+                    <td>
+                        <p><a class="btn btn-success" href="">Accepter</a></p>
+                        <p><a class="btn btn-danger" href="">Refuser</a></p>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

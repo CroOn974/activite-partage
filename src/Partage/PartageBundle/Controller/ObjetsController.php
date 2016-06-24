@@ -207,12 +207,14 @@ class ObjetsController extends Controller
      */
     public function showRequestAction()
     {
+        $user = $this->getUser();
+        $user_id = $user->getId();
 
-        $queryObjet = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
-        $queryObjet->find($user_id);
+        $em = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
+        $queryObjet = $em->findBy(array('particulier' => $user_id));
 
         return $this->render('objets/showObjet.html.twig', array(
-            'objets' => $queryObjet,
+            'queryObjet' => $queryObjet,
         ));
     }
 }
