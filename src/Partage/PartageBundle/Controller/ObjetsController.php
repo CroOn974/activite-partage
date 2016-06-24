@@ -249,4 +249,25 @@ class ObjetsController extends Controller
         $pushIntoBase->flush();
         return $this->redirectToRoute('homepage');
     }
+
+
+    /**
+     * @Route("/accept/", name="accept")
+     */
+    public function choixparticulier(){
+        $user = $this->getUser();
+        $user_id = $user->getAssociation();
+
+        $em = $this->getDoctrine()->getManager();
+        $choix = $em->getRepository('PartagePartageBundle:Reservation')
+                    ->findBy(array('association' => $user_id , 'accept' => 1));
+
+        return $this->render(
+            'objets/accept.html.twig',
+            array(
+            'choix' => $choix,
+            )
+        );
+
+  }
 }
