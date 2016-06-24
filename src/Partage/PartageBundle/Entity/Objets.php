@@ -37,7 +37,7 @@ class Objets
     private $particulier;
 
     /**
-     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="objets")
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="objets")
      */
     protected $reservation;
 
@@ -46,7 +46,7 @@ class Objets
      */
     public function __construct()
     {
-        $this->association = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservation = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -179,5 +179,29 @@ class Objets
     public function getReservation()
     {
         return $this->reservation;
+    }
+
+    /**
+     * Add reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     *
+     * @return Objets
+     */
+    public function addReservation(\Partage\PartageBundle\Entity\Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     */
+    public function removeReservation(\Partage\PartageBundle\Entity\Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
     }
 }

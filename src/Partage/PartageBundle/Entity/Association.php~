@@ -37,7 +37,7 @@ class Association
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="association")
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="association")
      */
     protected $reservation;
 
@@ -131,39 +131,6 @@ class Association
         return $this->tel;
     }
 
-    /**
-     * Add objet
-     *
-     * @param \Partage\PartageBundle\Entity\Objets $objet
-     *
-     * @return Association
-     */
-    public function addObjet(\Partage\PartageBundle\Entity\Objets $objet)
-    {
-        $this->objets[] = $objet;
-
-        return $this;
-    }
-
-    /**
-     * Remove objet
-     *
-     * @param \Partage\PartageBundle\Entity\Objets $objet
-     */
-    public function removeObjet(\Partage\PartageBundle\Entity\Objets $objet)
-    {
-        $this->objets->removeElement($objet);
-    }
-
-    /**
-     * Get objets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObjets()
-    {
-        return $this->objets;
-    }
 
     /**
      * Set user
@@ -216,5 +183,29 @@ class Association
     public function getReservation()
     {
         return $this->reservation;
+    }
+
+    /**
+     * Add reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     *
+     * @return Association
+     */
+    public function addReservation(\Partage\PartageBundle\Entity\Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     */
+    public function removeReservation(\Partage\PartageBundle\Entity\Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
     }
 }

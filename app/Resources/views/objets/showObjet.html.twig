@@ -15,11 +15,12 @@
             <tbody>
             {% for objet in queryObjet %}
                 <tr>
-                    <td>{{ objet.association.0.nom }}<br>{{ objet.association.0.adresse }}</td>
+                    <td>{{ objet.reservation.0.association.nom }} <br> {{ objet.reservation.0.association.adresse }}</td>
                     <td>{{ objet.nom }}</td>
                     <td>
                         <p><a class="btn btn-success" href="">Accepter</a></p>
-                        <p><a class="btn btn-danger" href="{{ path('delete_request', {'id':objet.id}) }}">Refuser</a></p>
+                        <p><a class="btn btn-danger" href="{{ path('delete_request', {'id':objet.id}) }}">Refuser</a>
+                        </p>
                     </td>
                 </tr>
             {% endfor %}

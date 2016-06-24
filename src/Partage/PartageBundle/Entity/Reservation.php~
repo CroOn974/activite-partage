@@ -24,19 +24,19 @@ class Reservation
     /**
      * @var string
      *
-     * @ORM\Column(name="accept", type="boolean", length=255)
+     * @ORM\Column(name="accept", type="boolean", length=255, nullable=true)
      */
     private $accept;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Association", inversedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="Association", inversedBy="reservation")
      * @ORM\JoinColumn(name="asso_id", referencedColumnName="id")
      */
     protected $association;
 
     /**
-     * @ORM\OneToOne(targetEntity="Objets", inversedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="Objets", inversedBy="reservation")
      * @ORM\JoinColumn(name="objets_id", referencedColumnName="id")
      */
     protected $objets;
