@@ -82,4 +82,28 @@ class User extends BaseUser
     {
         return $this->particulier;
     }
+
+    /**
+     * Set association
+     *
+     * @param \Partage\PartageBundle\Entity\Association $association
+     *
+     * @return User
+     */
+    public function setAssociation(\Partage\PartageBundle\Entity\Association $association = null)
+    {
+        $this->association = $association;
+
+        return $this;
+    }
+
+    /**
+     * Get association
+     *
+     * @return \Partage\PartageBundle\Entity\Association
+     */
+    public function getAssociation()
+    {
+        return $this->association;
+    }
 }

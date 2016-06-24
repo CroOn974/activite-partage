@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Partage\PartageBundle\Entity\Objets;
+use Partage\PartageBundle\Entity\Reservation;
 use Partage\PartageBundle\Form\ObjetsType;
 
 /**
@@ -30,8 +31,8 @@ class ObjetsController extends Controller
         $objets = $em->getRepository('PartagePartageBundle:Objets')->findAll();
 
         $this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_ASSOS'], null,
-            'Interdit :)) 
-        :)) 
+            'Interdit :))
+        :))
         :)');
         return $this->render(
             'objets/index.html.twig',
@@ -193,10 +194,13 @@ class ObjetsController extends Controller
 
         $getObjetFromDatabase = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
         $objetOfDatabase = $getObjetFromDatabase->find($id);
-        $objetOfDatabase->addAssociation($user_id);
+
+        $reservation = new Reservation();
+        $reservation->setAssociation($user_id);
+        $reservation->setObjets($objetOfDatabase);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($objetOfDatabase);
+        $em->persist($reservation);
         $em->flush();
 
         return $this->redirectToRoute('homepage');

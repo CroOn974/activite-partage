@@ -37,9 +37,9 @@ class Objets
     private $particulier;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Association", mappedBy="objets")
+     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="objets")
      */
-    private $association;
+    protected $reservation;
 
     /**
      * Constructor
@@ -140,7 +140,8 @@ class Objets
      */
     public function setParticulier(
         \Partage\PartageBundle\Entity\Particulier $particulier = null
-    ) {
+    )
+    {
         $this->particulier = $particulier;
 
         return $this;
@@ -165,7 +166,8 @@ class Objets
      */
     public function addAssociation(
         \Partage\PartageBundle\Entity\Association $association
-    ) {
+    )
+    {
         $this->association[] = $association;
 
         return $this;
@@ -178,7 +180,8 @@ class Objets
      */
     public function removeAssociation(
         \Partage\PartageBundle\Entity\Association $association
-    ) {
+    )
+    {
         $this->association->removeElement($association);
     }
 
@@ -190,5 +193,29 @@ class Objets
     public function getAssociation()
     {
         return $this->association;
+    }
+
+    /**
+     * Set reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     *
+     * @return Objets
+     */
+    public function setReservation(\Partage\PartageBundle\Entity\Reservation $reservation = null)
+    {
+        $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Get reservation
+     *
+     * @return \Partage\PartageBundle\Entity\Reservation
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
     }
 }
