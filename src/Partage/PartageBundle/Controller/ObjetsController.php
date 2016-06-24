@@ -182,4 +182,23 @@ class ObjetsController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
+    /**
+     * @Route("/getobjet/{id}", name="get_objet")
+     */
+    public function getAction($id)
+    {
+        $user = $this->getUser();
+        $user_id = $user->getAssociation();
+
+        $getObjetFromDatabase = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
+        $objetOfDatabase = $getObjetFromDatabase->find($id);
+        $objetOfDatabase->addAssociation($user_id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($objetOfDatabase);
+        $em->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
 }
