@@ -3,7 +3,6 @@
 {% block body %}
     <div class="container m-t-3 p-t-1">
         <h1>Mes requetes</h1>
-
         <table class="table">
             <thead>
             <tr>
@@ -14,15 +13,19 @@
             </thead>
             <tbody>
             {% for objet in queryObjet %}
-                <tr>
-                    <td>{{ objet.reservation.0.association.nom }} <br> {{ objet.reservation.0.association.adresse }}</td>
-                    <td>{{ objet.nom }}</td>
-                    <td>
-                        <p><a class="btn btn-success" href="">Accepter</a></p>
-                        <p><a class="btn btn-danger" href="{{ path('delete_request', {'id':objet.id}) }}">Refuser</a>
-                        </p>
-                    </td>
-                </tr>
+                {% for objet2 in objet.reservation %}
+                    <tr>
+                        <td>{{ objet2.association.nom }}</td>
+                        <td>{{ objet.nom }}</td>
+                        <td>
+                            <p><a class="btn btn-success"
+                                  href="{{ path('allow_request', {'id':objet.id}) }}">Accepter</a></p>
+                            <p><a class="btn btn-danger"
+                                  href="{{ path('delete_request', {'id':objet.id}) }}">Refuser</a>
+                            </p>
+                        </td>
+                    </tr>
+                {% endfor %}|
             {% endfor %}
             </tbody>
         </table>

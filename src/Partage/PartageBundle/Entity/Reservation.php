@@ -2,6 +2,7 @@
 
 namespace Partage\PartageBundle\Entity;
 
+use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,9 +23,8 @@ class Reservation
     private $id;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="accept", type="boolean", length=255, nullable=true)
+     * @ORM\Column(name="accept", type="boolean", nullable=true)
      */
     private $accept;
 
@@ -53,9 +53,6 @@ class Reservation
 
     /**
      * Set accept
-     *
-     * @param string $accept
-     *
      * @return Reservation
      */
     public function setAccept($accept)

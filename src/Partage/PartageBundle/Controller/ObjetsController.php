@@ -227,9 +227,26 @@ class ObjetsController extends Controller
      */
     public function deleteRequestAction($id)
     {
-        $em = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
+        $em = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Reservation');
+        $objet = $em->findOneBy(array('objets' => $id));
+        $objet->setAccept(false);
         $pushIntoBase = $this->getDoctrine()->getManager();
-        $pushIntoBase->persist($deleteQuery);
+        $pushIntoBase->persist($objet);
         $pushIntoBase->flush();
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @Route("/allowrequest/{id}", name="allow_request")
+     */
+    public function allowRequestAction($id)
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Reservation');
+        $objet = $em->findOneBy(array('objets' => $id));
+        $objet->setAccept(true);
+        $pushIntoBase = $this->getDoctrine()->getManager();
+        $pushIntoBase->persist($objet);
+        $pushIntoBase->flush();
+        return $this->redirectToRoute('homepage');
     }
 }
