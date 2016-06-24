@@ -15,8 +15,8 @@
             <tbody>
             {% for objet in queryObjet %}
                 <tr>
-                    <td>{{ objet.association.0.nom }}<br>{{ objet.association.0.adresse }}</td>
-                    <td>{{ objet.description }}</td>
+                    <td>{{ objet.reservation.association.nom }}<br>{{ objet.reservation.association.adresse }}</td>
+                    <td>{{ objet.nom }}</td>
                     <td>
                         <p><a class="btn btn-success" href="">Accepter</a></p>
                         <p><a class="btn btn-danger" href="">Refuser</a></p>
