@@ -31,16 +31,15 @@ class Association
     private $tel;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Objets", mappedBy="association")
-     * @ORM\JoinTable(name="objets_Has_association")
-     */
-    private $objets;
-
-    /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="association")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="association")
+     */
+    protected $reservation;
 
     /**
      * Constructor
@@ -193,5 +192,29 @@ class Association
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set reservation
+     *
+     * @param \Partage\PartageBundle\Entity\Reservation $reservation
+     *
+     * @return Association
+     */
+    public function setReservation(\Partage\PartageBundle\Entity\Reservation $reservation = null)
+    {
+        $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Get reservation
+     *
+     * @return \Partage\PartageBundle\Entity\Reservation
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
     }
 }
