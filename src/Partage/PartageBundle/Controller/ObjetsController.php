@@ -203,15 +203,14 @@ class ObjetsController extends Controller
     }
 
     /**
-     * @Route("/showrequest", name="show_request")
+     * @Route("/showrequest/", name="show_request")
      */
-    public function showObjetAction()
+    public function showRequestAction()
     {
-        $user = $this->getUser();
-        $user_id = $user->getId();
 
         $queryObjet = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Objets');
-        $queryObjet->getAssociation();
+        $queryObjet->find($user_id);
+
         return $this->render('objets/showObjet.html.twig', array(
             'objets' => $queryObjet,
         ));
